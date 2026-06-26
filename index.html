@@ -6,7 +6,7 @@
     <title>Шаурма Хаус - донеры, шаурма и бургеры в Караганде</title>
     <meta
       name="description"
-      content="Шаурма Хаус в Караганде: халяльные донеры, шаурма, бургеры, пицца и плов. 6 филиалов, доставка и заказ через WhatsApp."
+      content="Шаурма Хаус в Караганде: халяльные донеры, шаурма, бургеры, пицца и плов. 6 филиалов, доставка и заказ онлайн."
     />
     <meta property="og:site_name" content="Шаурма Хаус" />
     <meta property="og:title" content="Шаурма Хаус - вкус с огня" />
@@ -73,8 +73,10 @@
           <span>Итого:</span>
           <strong id="cartTotal">0 ₸</strong>
         </div>
-        <a class="button primary full-width" href="https://wa.me/77052054220?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%20%D0%B2%20%D0%A8%D0%B0%D1%83%D1%80%D0%BC%D0%B0%20%D0%A5%D0%B0%D1%83%D1%81" target="_blank" rel="noreferrer">Оформить в WhatsApp</a>
-        <button class="button secondary full-width" id="clearCart">Очистить корзину</button>
+        <div class="cart-actions">
+          <button class="button primary full-width" id="sendOrderBtn">Оформить заказ</button>
+          <button class="button secondary full-width" id="clearCart">Очистить корзину</button>
+        </div>
       </div>
     </aside>
 
@@ -428,7 +430,7 @@
           <p class="eyebrow">О нас</p>
           <h2>Готовим так, как для своих</h2>
           <p class="lead-small">
-            Шаурма Хаус - команда, влюблённая в восточную кухню. Каждый донер заворачиваем вручную,
+            Шаурма Хаус - команда, влюблённая в восточную кухню. Каждый донер заворачиваем вручну,
             тесто готовим утром, мясо маринуем по семейному рецепту.
           </p>
           <div class="features">
@@ -493,7 +495,7 @@
             <h2>Голодны? Оформим заказ сейчас.</h2>
             <p>Напишите в WhatsApp - уточним адрес, филиал и время доставки.</p>
           </div>
-          <a class="button dark" href="https://wa.me/77052054220?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%20%D0%B2%20%D0%A8%D0%B0%D1%83%D1%80%D0%BC%D0%B0%20%D0%A5%D0%B0%D1%83%D1%81" target="_blank" rel="noreferrer">+7 705 205 4220</a>
+          <a class="button dark" href="https://wa.me/77052054220?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7" target="_blank" rel="noreferrer">Написать в WhatsApp</a>
         </div>
       </section>
     </main>
@@ -504,7 +506,7 @@
     </footer>
 
     <script>
-      // СИСТЕМА КОРЗИНЫ
+      // СИСТЕМА КОРЗИНЫ (сохранение в localStorage и отправка на сервер)
       const cart = [];
       const cartToggle = document.getElementById('cartToggle');
       const cartSidebar = document.getElementById('cartSidebar');
@@ -515,6 +517,30 @@
       const cartCount = document.getElementById('cartCount');
       const clearCartBtn = document.getElementById('clearCart');
       const heroOrder = document.getElementById('heroOrder');
+      const sendOrderBtn = document.getElementById('sendOrderBtn');
+
+      // Загрузить корзину из localStorage при старте
+      function loadCartFromStorage() {
+        try {
+          const raw = localStorage.getItem('shaurma_cart');
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (Array.isArray(parsed)) {
+              parsed.forEach(i => cart.push(i));
+            }
+          }
+        } catch (e) {
+          console.warn('Не удалось загрузить корзину из storage', e);
+        }
+      }
+
+      function saveCartToStorage() {
+        try {
+          localStorage.setItem('shaurma_cart', JSON.stringify(cart));
+        } catch (e) {
+          console.warn('Не удалось сохранить корзину', e);
+        }
+      }
 
       // Открыть корзину
       cartToggle.addEventListener('click', () => {
@@ -546,9 +572,11 @@
           const price = parseInt(this.dataset.price);
           const type = this.dataset.type;
 
-          cart.push({ name, price, type, id: Date.now() });
+          const item = { name, price, type, id: Date.now() + Math.floor(Math.random() * 1000) };
+          cart.push(item);
+          saveCartToStorage();
           updateCart();
-          
+
           // Визуальная обратная связь
           this.textContent = '✓ Добавлено!';
           this.style.opacity = '0.7';
@@ -596,6 +624,7 @@
           btn.addEventListener('click', function() {
             const index = parseInt(this.dataset.index);
             cart.splice(index, 1);
+            saveCartToStorage();
             updateCart();
           });
         });
@@ -606,8 +635,59 @@
       // Очистить корзину
       clearCartBtn.addEventListener('click', () => {
         cart.length = 0;
+        saveCartToStorage();
         updateCart();
       });
+
+      // Отправка заказа на сервер (POST /api/orders).
+      sendOrderBtn.addEventListener('click', async () => {
+        if (cart.length === 0) {
+          alert('Корзина пуста');
+          return;
+        }
+
+        const total = cart.reduce((s, i) => s + i.price, 0);
+        const payload = {
+          items: cart,
+          total,
+          createdAt: new Date().toISOString(),
+          source: 'website'
+        };
+
+        try {
+          // Попробуем послать на встроенный сервер /api/orders
+          const res = await fetch('/api/orders', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          if (!res.ok) throw new Error('network');
+          const data = await res.json();
+
+          // Открыть WhatsApp с текстом-подтверждением и id заказа
+          const phone = '77052054220';
+          const message = encodeURIComponent(`Здравствуйте! Я сделал заказ (ID: ${data.id}). Сумма: ${total} ₸. Подробности: ${cart.map(i=>i.name+' - '+i.price+'₸').join(', ')}. Можете связаться для подтверждения.`);
+          window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+
+          // Очистить корзину
+          cart.length = 0;
+          saveCartToStorage();
+          updateCart();
+
+          alert('Заказ сохранён. Сейчас откроется WhatsApp для подтверждения.');
+        } catch (e) {
+          console.error('Ошибка отправки заказа:', e);
+          // fallback: открыть WhatsApp без ID
+          const phone = '77052054220';
+          const message = encodeURIComponent(`Здравствуйте! Я хочу оформить заказ. Сумма: ${cart.reduce((s,i)=>s+i.price,0)} ₸. Товары: ${cart.map(i=>i.name+' - '+i.price+'₸').join(', ')}.`);
+          window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+      });
+
+      // Инициализация
+      loadCartFromStorage();
+      updateCart();
     </script>
   </body>
 </html>
