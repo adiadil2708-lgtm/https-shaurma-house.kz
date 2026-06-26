@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Шаурма Хаус - донеры, шаурма и бургеры в Караганде</title>
+    <meta
+      name="description"
+      content="Шаурма Хаус в Караганде: халяльные донеры, шаурма, бургеры, пицца и плов. 6 филиалов, доставка и заказ через WhatsApp."
+    />
+    <meta property="og:site_name" content="Шаурма Хаус" />
+    <meta property="og:title" content="Шаурма Хаус - вкус с огня" />
+    <meta
+      property="og:description"
+      content="Сочные донеры, шаурма, бургеры и пицца халяль. 6 филиалов в Караганде, быстрая доставка."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1662116765994-1e4200c43589?auto=format&fit=crop&w=1600&q=80" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Шаурма Хаус",
+        "servesCuisine": ["Восточная", "Халяль", "Фастфуд"],
+        "priceRange": "₸₸",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "мкр. Байкена Ашимова, 21/5",
+          "addressLocality": "Караганда",
+          "addressCountry": "KZ"
+        },
+        "telephone": "+7 705 205 4220",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "1349"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Шаурма Хаус">
+        <span class="brand-mark">ШХ</span>
+        <span>Шаурма <strong>Хаус</strong></span>
+      </a>
+      <nav aria-label="Основная навигация">
+        <a href="#menu">Меню</a>
+        <a href="#combos">Комбо</a>
+        <a href="#about">О нас</a>
+        <a href="#locations">Филиалы</a>
+      </nav>
+      <button class="cart-toggle" id="cartToggle" aria-label="Открыть корзину">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-count" id="cartCount" style="display: none;">0</span>
+      </button>
+    </header>
+
+    <!-- БОКОВАЯ КОРЗИНА -->
+    <aside class="cart-sidebar" id="cartSidebar">
+      <div class="cart-header">
+        <h3>Ваша корзина</h3>
+        <button class="close-btn" id="closeCart" aria-label="Закрыть корзину">✕</button>
+      </div>
+      <div class="cart-items" id="cartItems">
+        <p class="empty-cart">Корзина пуста</p>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Итого:</span>
+          <strong id="cartTotal">0 ₸</strong>
+        </div>
+        <a class="button primary full-width" href="https://wa.me/77052054220?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%20%D0%B2%20%D0%A8%D0%B0%D1%83%D1%80%D0%BC%D0%B0%20%D0%A5%D0%B0%D1%83%D1%81" target="_blank" rel="noreferrer">Оформить в WhatsApp</a>
+        <button class="button secondary full-width" id="clearCart">Очистить корзину</button>
+      </div>
+    </aside>
+
+    <!-- ОВЕРЛЕЙ КОРЗИНЫ -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Халяль · Караганда · с 2018</p>
+          <h1>Сочный донер прямо с огня.</h1>
+          <p class="lead">
+            Маринованное мясо на вертеле, свежий хлеб, хрустящие овощи и фирменные соусы.
+            Готовим быстро, доставляем горячим по Караганде.
+          </p>
+          <div class="hero-actions">
+            <button class="button primary" id="heroOrder" type="button">Заказать доставку</button>
+            <a class="button secondary" href="#menu">Смотреть меню</a>
+          </div>
+          <div class="rating" aria-label="Рейтинг 4.9 на 2ГИС">
+            <span>★★★★★</span>
+            <strong>4.9</strong>
+            <span>1349 отзывов на 2ГИС</span>
+          </div>
+        </div>
+        <div class="hero-media">
+          <img
+            src="https://images.unsplash.com/photo-1662116765994-1e4200c43589?auto=format&fit=crop&w=1600&q=80"
+            alt="Свежая шаурма с мясом и овощами"
+          />
+          <div class="price-card">
+            <span>Средний чек</span>
+            <strong>2 000 ₸</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats" aria-label="Ключевые показатели">
+        <div><strong>4.9</strong><span>рейтинг на 2ГИС</span></div>
+        <div><strong>6</strong><span>филиалов в городе</span></div>
+        <div><strong>1349+</strong><span>довольных отзывов</span></div>
+        <div><strong>30 мин</strong><span>средняя доставка</span></div>
+      </section>
+
+      <!-- КОМБО МЕНЮ -->
+      <section id="combos" class="section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Выгодные предложения</p>
+            <h2>Комбо с выгодой до 20%</h2>
+          </div>
+          <p>Попробуйте наши лучшие комбинации. Экономьте и наслаждайтесь!</p>
+        </div>
+        <div class="combos-grid">
+          <!-- КОМБО 1 -->
+          <article class="combo-card">
+            <img src="https://images.unsplash.com/photo-1662116765994-1e4200c43589?auto=format&fit=crop&w=900&q=80" alt="Комбо 1" />
+            <div class="combo-content">
+              <h3>Комбо 1</h3>
+              <p class="combo-desc">2 средних донера + ФРИ + 1 л PEPSI</p>
+              <span class="price">4 490 ₸</span>
+              <button class="button small add-to-cart" data-type="combo" data-name="Комбо 1 (2 донера + фри + пепси)" data-price="4490">Добавить в корзину</button>
+            </div>
+          </article>
+
+          <!-- КОМБО 2 -->
+          <article class="combo-card">
+            <img src="https://images.unsplash.com/photo-1633321702518-7feccafb94d5?auto=format&fit=crop&w=900&q=80" alt="Комбо 2" />
+            <div class="combo-content">
+              <h3>Комбо 2</h3>
+              <p class="combo-desc">Большой донер КУРИЦЫ + 0.5 л PEPSI</p>
+              <span class="price">2 490 ₸</span>
+              <button class="button small add-to-cart" data-type="combo" data-name="Комбо 2 (донер курицы + пепси)" data-price="2490">Добавить в корзину</button>
+            </div>
+          </article>
+
+          <!-- КОМБО 3 -->
+          <article class="combo-card">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80" alt="Комбо 3" />
+            <div class="combo-content">
+              <h3>Комбо 3</h3>
+              <p class="combo-desc">Средний БУФЕТ КУРИЦЫ + 0.5 л PEPSI</p>
+              <span class="price">2 690 ₸</span>
+              <button class="button small add-to-cart" data-type="combo" data-name="Комбо 3 (буфет курицы + пепси)" data-price="2690">Добавить в корзину</button>
+            </div>
+          </article>
+
+          <!-- КОМБО 4 -->
+          <article class="combo-card">
+            <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=900&q=80" alt="Комбо 4" />
+            <div class="combo-content">
+              <h3>Комбо 4</h3>
+              <p class="combo-desc">Средний БУФЕТ КУРИЦЫ + 0.5 л PEPSI</p>
+              <span class="price">2 090 ₸</span>
+              <button class="button small add-to-cart" data-type="combo" data-name="Комбо 4 (буфет курицы + пепси)" data-price="2090">Добавить в корзину</button>
+            </div>
+          </article>
+
+          <!-- КОМБО 5 -->
+          <article class="combo-card">
+            <img src="https://images.unsplash.com/photo-1642821373181-696a54913e93?auto=format&fit=crop&w=900&q=80" alt="Комбо 5" />
+            <div class="combo-content">
+              <h3>Комбо 5</h3>
+              <p class="combo-desc">Крылышки 40 шт + 2 л PEPSI</p>
+              <span class="price">11 990 ₸</span>
+              <button class="button small add-to-cart" data-type="combo" data-name="Комбо 5 (крылышки 40шт + 2л пепси)" data-price="11990">Добавить в корзину</button>
+            </div>
+          </article>
+
+          <!-- КОМБО 6 -->
+          <article class="combo-card">
+            <img src="https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=900&q=80" alt="Комбо 6" />
+            <div class="combo-content">
+              <h3>Комбо 6</h3>
+              <p class="combo-desc">Куриный чизбургер + 0.5 л PEPSI</p>
+              <span class="price">2 290 ₸</span>
+              <button class="button small add-to-cart" data-type="combo" data-name="Комбо 6 (куриный чизбургер + пепси)" data-price="2290">Добавить в корзину</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- МЕНЮ -->
+      <section id="menu" class="section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Меню</p>
+            <h2>То, что любят в Караганде</h2>
+          </div>
+          <p>Восточная кухня, халяльные блюда, пицца и бургеры. Готовим из свежих продуктов каждый день.</p>
+        </div>
+        <div class="menu-grid">
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1662116765994-1e4200c43589?auto=format&fit=crop&w=900&q=80" alt="Классический донер" />
+            <div><h3>Классический донер</h3><strong>1 800 ₸</strong></div>
+            <p>Маринованное мясо, овощи и фирменный соус в свежем лаваше.</p>
+            <button class="button small add-to-cart" data-type="dish" data-name="Классический донер" data-price="1800">Добавить в корзину</button>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1633321702518-7feccafb94d5?auto=format&fit=crop&w=900&q=80" alt="Донер XL" />
+            <div><h3>Донер XL с огня</h3><strong>2 600 ₸</strong></div>
+            <p>Удвоенная порция мяса с вертела и свежие овощи для большого аппетита.</p>
+            <button class="button small add-to-cart" data-type="dish" data-name="Донер XL с огня" data-price="2600">Добавить в корзину</button>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80" alt="Хаус-бургер" />
+            <div><h3>Хаус-бургер</h3><strong>2 200 ₸</strong></div>
+            <p>Сочная котлета, чеддер, домашний соус и хрустящий картофель.</p>
+            <button class="button small add-to-cart" data-type="dish" data-name="Хаус-бургер" data-price="2200">Добавить в корзину</button>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=900&q=80" alt="Пицца Маргарита" />
+            <div><h3>Пицца Маргарита</h3><strong>3 200 ₸</strong></div>
+            <p>Тонкое тесто, томатный соус, моцарелла и базилик.</p>
+            <button class="button small add-to-cart" data-type="dish" data-name="Пицца Маргарита" data-price="3200">Добавить в корзину</button>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1642821373181-696a54913e93?auto=format&fit=crop&w=900&q=80" alt="Плов по-домашнему" />
+            <div><h3>Плов по-домашнему</h3><strong>1 900 ₸</strong></div>
+            <p>Рис, нежное мясо, морковь и специи в восточной традиции.</p>
+            <button class="button small add-to-cart" data-type="dish" data-name="Плов по-домашнему" data-price="1900">Добавить в корзину</button>
+          </article>
+          <article class="menu-card">
+            <img src="https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=900&q=80" alt="Картофель фри" />
+            <div><h3>Картофель фри</h3><strong>900 ₸</strong></div>
+            <p>Хрустящий снаружи, мягкий внутри. Подаём с соусом на выбор.</p>
+            <button class="button small add-to-cart" data-type="dish" data-name="Картофель фри" data-price="900">Добавить в корзину</button>
+          </article>
+        </div>
+      </section>
+
+      <!-- ДОБАВКИ -->
+      <section class="section extras-section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Дополнения</p>
+            <h2>Добавки и соусы</h2>
+          </div>
+          <p>Сделайте ваш заказ ещё вкуснее с нашими добавками.</p>
+        </div>
+
+        <!-- ПЕРЕЦ И СПЕЦИИ -->
+        <div class="extras-category">
+          <h3>🌶️ Перец и специи</h3>
+          <div class="extras-grid">
+            <div class="extra-card">
+              <div class="extra-info">
+                <span class="extra-name">Халапеньо</span>
+                <span class="extra-price">150 ₸</span>
+              </div>
+              <button class="button tiny add-to-cart" data-type="extra" data-name="Халапеньо" data-price="150">+</button>
+            </div>
+            <div class="extra-card">
+              <div class="extra-info">
+                <span class="extra-name">Острый перец</span>
+                <span class="extra-price">100 ₸</span>
+              </div>
+              <button class="button tiny add-to-cart" data-type="extra" data-name="Острый перец" data-price="100">+</button>
+            </div>
+            <div class="extra-card">
+              <div class="extra-info">
+                <span class="extra-name">Сладкий перец</span>
+                <span class="extra-price">150 ₸</span>
+              </div>
+              <button class="button tiny add-to-cart" data-type="extra" data-name="Сладкий перец" data-price="150">+</button>
+            </div>
+            <div class="extra-card">
+              <div class="extra-info">
+                <span class="extra-name">Завтраки со специями</span>
+                <span class="extra-price">120 ₸</span>
+              </div>
+              <button class="button tiny add-to-cart" data-type="extra" data-name="Завтраки со специями" data-price="120">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- СОУСЫ -->
+        <div class="extras-category">
+          <h3>🍯 Соусы</h3>
+          <div class="extras-grid">
+            <div class="extra-card">
+              <div class="extra-info">
+                <span class="extra-name">Чесночный соус</span>
+                <span class="extra-price">100 ₸</span>
+              </div>
+              <button class="button tiny add-to-cart" data-type="extra" data-name="Чесночный соус" data-price="100">+</button>
+            </div>
+            <div class="extra-card">
+              <div class="extra-info">
+                <span class="extra-name">Острый соус</span>
+                <span class="extra-price">100 ₸</span>
+              </div>
+              <button class="button tiny add-to-cart" data-type="extra" data-name="Острый соус" data-price="100">+</button>
+            </div>
+            <div class="extra-card">
+              <div class="extra-info">
+                <span class="extra-name">Барбекю</span>
+                <span class="extra-price">150 ₸</span>
+              </div>
+              <button class="button tiny add-to-cart" data-type="extra" data-name="Соус барбекю" data-price="150">+</button>
+            </div>
+            <div class="extra-card">
+              <div class="extra-info">
+                <span class="extra-name">Сливочный соус</span>
+                <span class="extra-price">120 ₸</span>
+              </div>
+              <button class="button tiny add-to-cart" data-type="extra" data-name="Сливочный соус" data-price="120">+</button>
+            </div>
+            <div class="extra-card">
+              <div class="extra-info">
+                <span class="extra-name">Маршалла</span>
+                <span class="extra-price">180 ₸</span>
+              </div>
+              <button class="button tiny add-to-cart" data-type="extra" data-name="Соус маршалла" data-price="180">+</button>
+            </div>
+            <div class="extra-card">
+              <div class="extra-info">
+                <span class="extra-name">Сметана</span>
+                <span class="extra-price">80 ₸</span>
+              </div>
+              <button class="button tiny add-to-cart" data-type="extra" data-name="Сметана" data-price="80">+</button>
+            </div>
+            <div class="extra-card">
+              <div class="extra-info">
+                <span class="extra-name">Томатный соус</span>
+                <span class="extra-price">100 ₸</span>
+              </div>
+              <button class="button tiny add-to-cart" data-type="extra" data-name="Томатный соус" data-price="100">+</button>
+            </div>
+            <div class="extra-card">
+              <div class="extra-info">
+                <span class="extra-name">Кетчуп</span>
+                <span class="extra-price">80 ₸</span>
+              </div>
+              <button class="button tiny add-to-cart" data-type="extra" data-name="Кетчуп" data-price="80">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ДОПОЛНИТЕЛЬНЫЕ ИНГРЕДИЕНТЫ -->
+        <div class="extras-category">
+          <h3>🥒 Дополнительные ингредиенты</h3>
+          <div class="extras-grid">
+            <div class="extra-card">
+              <div class="extra-info">
+                <span class="extra-name">Помидоры</span>
+                <span class="extra-price">100 ₸</span>
+              </div>
+              <button class="button tiny add-to-cart" data-type="extra" data-name="Помидоры" data-price="100">+</button>
+            </div>
+            <div class="extra-card">
+              <div class="extra-info">
+                <span class="extra-name">Огурцы</span>
+                <span class="extra-price">100 ₸</span>
+              </div>
+              <button class="button tiny add-to-cart" data-type="extra" data-name="Огурцы" data-price="100">+</button>
+            </div>
+            <div class="extra-card">
+              <div class="extra-info">
+                <span class="extra-name">Лук</span>
+                <span class="extra-price">80 ₸</span>
+              </div>
+              <button class="button tiny add-to-cart" data-type="extra" data-name="Лук" data-price="80">+</button>
+            </div>
+            <div class="extra-card">
+              <div class="extra-info">
+                <span class="extra-name">Сыр чеддер</span>
+                <span class="extra-price">200 ₸</span>
+              </div>
+              <button class="button tiny add-to-cart" data-type="extra" data-name="Сыр чеддер" data-price="200">+</button>
+            </div>
+            <div class="extra-card">
+              <div class="extra-info">
+                <span class="extra-name">Кукуруза</span>
+                <span class="extra-price">120 ₸</span>
+              </div>
+              <button class="button tiny add-to-cart" data-type="extra" data-name="Кукуруза" data-price="120">+</button>
+            </div>
+            <div class="extra-card">
+              <div class="extra-info">
+                <span class="extra-name">Оливки</span>
+                <span class="extra-price">150 ₸</span>
+              </div>
+              <button class="button tiny add-to-cart" data-type="extra" data-name="Оливки" data-price="150">+</button>
+            </div>
+            <div class="extra-card">
+              <div class="extra-info">
+                <span class="extra-name">Грибы</span>
+                <span class="extra-price">180 ₸</span>
+              </div>
+              <button class="button tiny add-to-cart" data-type="extra" data-name="Грибы" data-price="180">+</button>
+            </div>
+            <div class="extra-card">
+              <div class="extra-info">
+                <span class="extra-name">Зелень (петрушка)</span>
+                <span class="extra-price">80 ₸</span>
+              </div>
+              <button class="button tiny add-to-cart" data-type="extra" data-name="Зелень (петрушка)" data-price="80">+</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- О НАС -->
+      <section id="about" class="section about">
+        <img
+          src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=1200&q=80"
+          alt="Мясо и овощи для шаурмы"
+        />
+        <div>
+          <p class="eyebrow">О нас</p>
+          <h2>Готовим так, как для своих</h2>
+          <p class="lead-small">
+            Шаурма Хаус - команда, влюблённая в восточную кухню. Каждый донер заворачиваем вручную,
+            тесто готовим утром, мясо маринуем по семейному рецепту.
+          </p>
+          <div class="features">
+            <div><strong>На огне</strong><span>Мясо готовится на вертикальном вертеле.</span></div>
+            <div><strong>Халяль</strong><span>Работаем с проверенными поставщиками.</span></div>
+            <div><strong>Доставка</strong><span>6 филиалов помогают привозить заказ горячим.</span></div>
+            <div><strong>Оплата</strong><span>Картой, наличными или переводом.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ФИЛИАЛЫ -->
+      <section id="locations" class="section locations">
+        <p class="eyebrow">Филиалы</p>
+        <h2>6 точек по Караганде</h2>
+        <div class="location-grid">
+          <a href="https://2gis.kz/karaganda/search/%D0%9C%D0%BA%D1%80.%20%D0%91%D0%B0%D0%B9%D0%BA%D0%B5%D0%BD%D0%B0%20%D0%90%D1%88%D0%B8%D0%BC%D0%BE%D0%B2%D0%B0%2C%2021%2F5" target="_blank" rel="noreferrer" class="location-link">
+            <article>
+              <strong>мкр. Байкена Ашимова, 21/5</strong>
+              <span>Ежедневно · 10:00-23:00</span>
+              <span class="map-badge">📍 Открыть на 2ГИС</span>
+            </article>
+          </a>
+          <a href="https://2gis.kz/karaganda/search/%D0%9C%D0%BA%D1%80.%20%D0%9E%D1%80%D0%B1%D0%B8%D1%82%D0%B0-1" target="_blank" rel="noreferrer" class="location-link">
+            <article>
+              <strong>мкр. Орбита-1</strong>
+              <span>Ежедневно · 10:00-23:00</span>
+              <span class="map-badge">📍 Открыть на 2ГИС</span>
+            </article>
+          </a>
+          <a href="https://2gis.kz/karaganda/search/Arena%20Park" target="_blank" rel="noreferrer" class="location-link">
+            <article>
+              <strong>Arena Park</strong>
+              <span>Ежедневно · 10:00-23:00</span>
+              <span class="map-badge">📍 Открыть на 2ГИС</span>
+            </article>
+          </a>
+          <a href="https://2gis.kz/karaganda/search/%D0%9F%D1%80.%20%D0%91%D1%83%D1%85%D0%B0%D1%80%20%D0%96%D1%8B%D1%80%D0%B0%D1%83" target="_blank" rel="noreferrer" class="location-link">
+            <article>
+              <strong>пр. Бухар Жырау</strong>
+              <span>Ежедневно · 10:00-23:00</span>
+              <span class="map-badge">📍 Открыть на 2ГИС</span>
+            </article>
+          </a>
+          <a href="https://2gis.kz/karaganda/search/%D0%9C%D0%BA%D1%80.%20%D0%92%D0%BE%D1%81%D1%82%D0%BE%D0%BA-2" target="_blank" rel="noreferrer" class="location-link">
+            <article>
+              <strong>мкр. Восток-2</strong>
+              <span>Ежедневно · 10:00-23:00</span>
+              <span class="map-badge">📍 Открыть на 2ГИС</span>
+            </article>
+          </a>
+          <a href="https://2gis.kz/karaganda/search/%D1%83%D0%BB.%20%D0%93%D0%BE%D0%B3%D0%BE%D0%BB%D1%8F" target="_blank" rel="noreferrer" class="location-link">
+            <article>
+              <strong>ул. Гоголя</strong>
+              <span>Ежедневно · 10:00-23:00</span>
+              <span class="map-badge">📍 Открыть на 2ГИС</span>
+            </article>
+          </a>
+        </div>
+        <div class="cta">
+          <div>
+            <h2>Голодны? Оформим заказ сейчас.</h2>
+            <p>Напишите в WhatsApp - уточним адрес, филиал и время доставки.</p>
+          </div>
+          <a class="button dark" href="https://wa.me/77052054220?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%20%D0%B2%20%D0%A8%D0%B0%D1%83%D1%80%D0%BC%D0%B0%20%D0%A5%D0%B0%D1%83%D1%81" target="_blank" rel="noreferrer">+7 705 205 4220</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span><strong>Шаурма Хаус</strong> · Караганда</span>
+      <span>© 2026 Шаурма Хаус. Все права защищены.</span>
+    </footer>
+
+    <script>
+      // СИСТЕМА КОРЗИНЫ
+      const cart = [];
+      const cartToggle = document.getElementById('cartToggle');
+      const cartSidebar = document.getElementById('cartSidebar');
+      const cartOverlay = document.getElementById('cartOverlay');
+      const closeCart = document.getElementById('closeCart');
+      const cartItems = document.getElementById('cartItems');
+      const cartTotal = document.getElementById('cartTotal');
+      const cartCount = document.getElementById('cartCount');
+      const clearCartBtn = document.getElementById('clearCart');
+      const heroOrder = document.getElementById('heroOrder');
+
+      // Открыть корзину
+      cartToggle.addEventListener('click', () => {
+        cartSidebar.classList.add('active');
+        cartOverlay.classList.add('active');
+      });
+
+      // Закрыть корзину
+      closeCart.addEventListener('click', () => {
+        cartSidebar.classList.remove('active');
+        cartOverlay.classList.remove('active');
+      });
+
+      cartOverlay.addEventListener('click', () => {
+        cartSidebar.classList.remove('active');
+        cartOverlay.classList.remove('active');
+      });
+
+      // Кнопка заказа в герое
+      heroOrder.addEventListener('click', () => {
+        cartSidebar.classList.add('active');
+        cartOverlay.classList.add('active');
+      });
+
+      // Добавить в корзину
+      document.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const name = this.dataset.name;
+          const price = parseInt(this.dataset.price);
+          const type = this.dataset.type;
+
+          cart.push({ name, price, type, id: Date.now() });
+          updateCart();
+          
+          // Визуальная обратная связь
+          this.textContent = '✓ Добавлено!';
+          this.style.opacity = '0.7';
+          setTimeout(() => {
+            this.textContent = this.dataset.type === 'extra' ? '+' : 'Добавить в корзину';
+            this.style.opacity = '1';
+          }, 1000);
+        });
+      });
+
+      // Обновить корзину
+      function updateCart() {
+        // Очистить список
+        cartItems.innerHTML = '';
+
+        if (cart.length === 0) {
+          cartItems.innerHTML = '<p class="empty-cart">Корзина пуста</p>';
+          cartCount.style.display = 'none';
+          cartTotal.textContent = '0 ₸';
+          return;
+        }
+
+        // Показать количество
+        cartCount.textContent = cart.length;
+        cartCount.style.display = 'inline-flex';
+
+        // Рендерить товары
+        let total = 0;
+        cart.forEach((item, index) => {
+          total += item.price;
+          const itemEl = document.createElement('div');
+          itemEl.className = 'cart-item';
+          itemEl.innerHTML = `
+            <div class="item-info">
+              <span class="item-name">${item.name}</span>
+              <span class="item-price">${item.price} ₸</span>
+            </div>
+            <button class="remove-item" data-index="${index}">✕</button>
+          `;
+          cartItems.appendChild(itemEl);
+        });
+
+        // Удаление товара
+        document.querySelectorAll('.remove-item').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const index = parseInt(this.dataset.index);
+            cart.splice(index, 1);
+            updateCart();
+          });
+        });
+
+        cartTotal.textContent = `${total} ₸`;
+      }
+
+      // Очистить корзину
+      clearCartBtn.addEventListener('click', () => {
+        cart.length = 0;
+        updateCart();
+      });
+    </script>
+  </body>
+</html>
